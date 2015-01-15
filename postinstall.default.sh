@@ -13,7 +13,8 @@ ROOT_USERS=(
     ctavan
     dohse
 )
-mkdir /root/.ssh
+mkdir -p /root/.ssh
+chown root: /root/.ssh
 chmod 700 /root/.ssh
 wget -O /root/.ssh/authorized_keys https://raw.githubusercontent.com/ctavan/hetzner-bootstrap/basenode/root-ssh-authorizedkeys.pub
 for USER in "${ROOT_USERS[@]}"
