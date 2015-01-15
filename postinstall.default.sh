@@ -16,7 +16,6 @@ ROOT_USERS=(
 mkdir -p /root/.ssh
 chown root: /root/.ssh
 chmod 700 /root/.ssh
-wget -O /root/.ssh/authorized_keys https://raw.githubusercontent.com/ctavan/hetzner-bootstrap/basenode/root-ssh-authorizedkeys.pub
 for USER in "${ROOT_USERS[@]}"
 do
     MAIL_ADDRESS=$(wget -qO - https://api.github.com/users/$USER | awk -F'"' '/"email": /{print $4}')
