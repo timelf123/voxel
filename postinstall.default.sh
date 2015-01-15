@@ -8,7 +8,7 @@ dpkg -i /tmp/puppet-common_2.7.26-1puppetlabs1_all.deb
 dpkg -i /tmp/puppet_2.7.26-1puppetlabs1_all.deb
 rm -rf /tmp/*.deb
 
-$ROOT_USERS=(
+ROOT_USERS=(
     leitmedium
     ctavan
     dohse
