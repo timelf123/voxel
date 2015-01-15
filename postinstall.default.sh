@@ -6,6 +6,7 @@ wget -O /tmp/puppet_2.7.26-1puppetlabs1_all.deb http://apt.puppetlabs.com/pool/p
 dpkg -i /tmp/facter_1.7.3-1puppetlabs1_amd64.deb
 dpkg -i /tmp/puppet-common_2.7.26-1puppetlabs1_all.deb
 dpkg -i /tmp/puppet_2.7.26-1puppetlabs1_all.deb
+rm -rf /tmp/*.deb
 
 $ROOT_USERS=(
     leitmedium
