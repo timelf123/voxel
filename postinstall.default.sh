@@ -12,6 +12,9 @@ ROOT_USERS=(
     leitmedium
     ctavan
     dohse
+    0x7f
+    mren
+    eckardt
 )
 mkdir -p /root/.ssh
 chown root: /root/.ssh
