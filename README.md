@@ -1,6 +1,7 @@
 # mbr voxel Deployment Scripts
 
-http://api.voxel.net/docs/
+- http://api.voxel.net/docs/
+- https://github.com/internaplabs/hAPI-perl
 
 ## Re-Image a Machine
 
