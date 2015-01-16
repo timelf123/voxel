@@ -1,3 +1,3 @@
-# mbr voxel deployment scripts
+# mbr voxel Deployment Scripts
 
 http://api.voxel.net/docs/
