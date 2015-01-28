@@ -15,6 +15,7 @@ ROOT_USERS=(
     0x7f
     mren
     eckardt
+    mwm42
 )
 mkdir -p /root/.ssh
 chown root: /root/.ssh
