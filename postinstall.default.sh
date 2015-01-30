@@ -14,6 +14,8 @@ dpkg -i /tmp/hiera-puppet_1.0.0-1puppetlabs1_all.deb
 
 rm -rf /tmp/*.deb
 
+sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
+
 ROOT_USERS=(
     leitmedium
     ctavan
