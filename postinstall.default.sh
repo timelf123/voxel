@@ -37,3 +37,6 @@ done
 chmod 600 /root/.ssh/authorized_keys
 
 /usr/bin/passwd -l root
+
+# Tell the api we're done
+wget -q -O /dev/null "$(debconf-get preseed/url|sed -r 's/(.+\/\/.*)\/ks\/(.*).ks/\1\/callback\?method=imaging\&uuid=\2/g')"
