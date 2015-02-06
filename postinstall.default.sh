@@ -49,4 +49,4 @@ do
 done
 chmod 600 /root/.ssh/authorized_keys
 
-/usr/bin/passwd -l root
+#/usr/bin/passwd -l root
