@@ -49,5 +49,3 @@ do
         awk -v user="$MAIL_ADDRESS - github user $USER" -F'"' '/"key": /{print $4, user}' >> /root/.ssh/authorized_keys
 done
 chmod 600 /root/.ssh/authorized_keys
-
-#/usr/bin/passwd -l root
