@@ -17,6 +17,17 @@ rm -rf /tmp/*.deb
 
 sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
 
+# Fix the order of the network interfaces by the order of mac addresses.
+UDEV_RULES=/etc/udev/rules.d/70-persistent-net.rules
+INDEX=0
+while read MAC
+do
+    DEV="eth$INDEX"
+    echo "Fixing network interface $MAC to $DEV"
+    sed -i "/$MAC/s/eth[0-9]/$DEV/g" $UDEV_RULES
+    ((INDEX+=1))
+done < <( grep -Po 'ATTR\{address\}==\"\K[0-9a-f:]+' $UDEV_RULES | sort )
+
 # Install passwordless access.
 ROOT_USERS=(
     leitmedium
