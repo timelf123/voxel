@@ -27,6 +27,7 @@ do
     sed -i "/$MAC/s/eth[0-9]/$DEV/g" $UDEV_RULES
     ((INDEX+=1))
 done < <( grep -Po 'ATTR\{address\}==\"\K[0-9a-f:]+' $UDEV_RULES | sort )
+sed -i 's/eth1/eth0/g' /etc/network/interfaces
 
 # Install passwordless access.
 ROOT_USERS=(
