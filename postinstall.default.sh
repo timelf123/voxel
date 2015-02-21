@@ -11,6 +11,9 @@ dpkg -i /tmp/puppet_2.7.26-1puppetlabs1_all.deb
 
 rm -rf /tmp/*.deb
 
+apt-get -y update
+apt-get -y install --install-recommends linux-generic-lts-trusty
+
 sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
 
 # Fix the order of the network interfaces by the order of mac addresses.
