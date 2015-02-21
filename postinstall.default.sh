@@ -16,6 +16,10 @@ apt-get -y install --install-recommends linux-generic-lts-trusty
 
 sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
 
+# Set puppet-private hostname to public IP until private interface is
+# configured.
+echo '64.95.99.203 puppet-private.m6r.eu' >> /etc/hosts
+
 # Fix the order of the network interfaces by the order of mac addresses.
 UDEV_RULES=/etc/udev/rules.d/70-persistent-net.rules
 INDEX=0
