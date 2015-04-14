@@ -1,13 +1,15 @@
 #!/bin/bash -eu
 
 # Install puppet.
-wget -O /tmp/facter_1.7.3-1puppetlabs1_amd64.deb http://apt.puppetlabs.com/pool/precise/main/f/facter/facter_1.7.3-1puppetlabs1_amd64.deb
-wget -O /tmp/puppet-common_2.7.26-1puppetlabs1_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet-common_2.7.26-1puppetlabs1_all.deb
-wget -O /tmp/puppet_2.7.26-1puppetlabs1_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet_2.7.26-1puppetlabs1_all.deb
+PUPPET_VERSION=3.7.5-1puppetlabs1
+FACTER_VERSION=2.4.3-1puppetlabs1
+wget -O /tmp/facter_${FACTER_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/f/facter/facter_${FACTER_VERSION}_all.deb
+wget -O /tmp/puppet-common_${PUPPET_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet-common_${PUPPET_VERSION}_all.deb
+wget -O /tmp/puppet_${PUPPET_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet_${PUPPET_VERSION}_all.deb
 
-dpkg -i /tmp/facter_1.7.3-1puppetlabs1_amd64.deb
-dpkg -i /tmp/puppet-common_2.7.26-1puppetlabs1_all.deb
-dpkg -i /tmp/puppet_2.7.26-1puppetlabs1_all.deb
+dpkg -i /tmp/facter_${FACTER_VERSION}_all.deb
+dpkg -i /tmp/puppet-common_${PUPPET_VERSION}_all.deb
+dpkg -i /tmp/puppet_${PUPPET_VERSION}_all.deb
 
 rm -rf /tmp/*.deb
 
