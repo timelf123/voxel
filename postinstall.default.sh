@@ -1,12 +1,15 @@
 #!/bin/bash -eu
 
 # Install puppet.
+HIERA_VERSION=1.3.4-1puppetlabs1
 PUPPET_VERSION=3.7.5-1puppetlabs1
 FACTER_VERSION=2.4.3-1puppetlabs1
+wget -O /tmp/hiera_${HIERA_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/h/hiera/hiera_${HIERA_VERSION}_all.deb
 wget -O /tmp/facter_${FACTER_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/f/facter/facter_${FACTER_VERSION}_all.deb
 wget -O /tmp/puppet-common_${PUPPET_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet-common_${PUPPET_VERSION}_all.deb
 wget -O /tmp/puppet_${PUPPET_VERSION}_all.deb http://apt.puppetlabs.com/pool/precise/main/p/puppet/puppet_${PUPPET_VERSION}_all.deb
 
+dpkg -i /tmp/hiera_${HIERA_VERSION}_all.deb
 dpkg -i /tmp/facter_${FACTER_VERSION}_all.deb
 dpkg -i /tmp/puppet-common_${PUPPET_VERSION}_all.deb
 dpkg -i /tmp/puppet_${PUPPET_VERSION}_all.deb
