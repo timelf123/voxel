@@ -39,13 +39,15 @@ sed -i 's/eth1/eth0/g' /etc/network/interfaces
 
 # Install passwordless access.
 ROOT_USERS=(
-    leitmedium
+    bratke
     ctavan
     dohse
-    0x7f
-    mren
     eckardt
-    mwm42
+    gesundkrank
+    hvoecking
+    jkukul
+    mweise
+    stdusr
 )
 mkdir -p /root/.ssh
 chown root: /root/.ssh
