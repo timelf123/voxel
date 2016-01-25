@@ -18,6 +18,19 @@ declare -a PARTITIONS=(
 )
 
 #######################################
+# Expects a device path and resturns the matching UUID
+# Globals:
+#   None 
+# Arguments:
+#   Device 
+# Returns:
+#   UUID
+#######################################
+function getUUIDFromDevice {
+    blkid $0 -s UUID |awk 'match($0, /UUID="(.*)"/, a) {print a[1]}'
+}
+
+#######################################
 # Exchanging /dev/sda4's filesystem,
 # because we are not able to set all mount and filesystem options using
 # partman.
@@ -31,7 +44,8 @@ declare -a PARTITIONS=(
 function changeDevSda4 {
     sed -i '/.*\/data\/1/d' /etc/fstab
     mkfs.ext4 -T largefile4 -m0 /dev/sda4
-    echo "/dev/sda4 /data/1 ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
+    UUID=getUUIDFromDevice /dev/sda4
+    echo "${UUID} /data/1 ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
 }
 
 #######################################
@@ -51,7 +65,8 @@ function createSingleDataPartition {
         parted -s ${DEVICE} -- mkpart ${LOCATION} ext2 1MiB 100%
         mkfs.ext4 -T largefile4 -m0 ${DEVICE}1
         mkdir -p ${LOCATION}
-        echo "${DEVICE}1 ${LOCATION} ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
+        UUID=getUUIDFromDevice ${DEVICE}1
+        echo "UUID ${LOCATION} ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
     done
 }
 
