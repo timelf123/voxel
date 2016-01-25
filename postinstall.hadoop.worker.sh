@@ -27,7 +27,7 @@ declare -a PARTITIONS=(
 #   UUID
 #######################################
 function getUUIDFromDevice {
-    blkid $0 -s UUID |awk 'match($0, /UUID="(.*)"/, a) {print a[1]}'
+    UUID=`blkid $1 -s UUID |awk '{ match($0, /UUID="(.*)"/); print substr(substr($0, RSTART, RLENGTH), 7, 36)}'`
 }
 
 #######################################
@@ -44,8 +44,9 @@ function getUUIDFromDevice {
 function changeDevSda4 {
     sed -i '/.*\/data\/1/d' /etc/fstab
     mkfs.ext4 -T largefile4 -m0 /dev/sda4
-    UUID=getUUIDFromDevice /dev/sda4
-    echo "${UUID} /data/1 ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
+    getUUIDFromDevice /dev/sda4
+    echo "UUID=$UUID"
+    echo "UUID=${UUID} /data/1 ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
 }
 
 #######################################
@@ -65,8 +66,8 @@ function createSingleDataPartition {
         parted -s ${DEVICE} -- mkpart ${LOCATION} ext2 1MiB 100%
         mkfs.ext4 -T largefile4 -m0 ${DEVICE}1
         mkdir -p ${LOCATION}
-        UUID=getUUIDFromDevice ${DEVICE}1
-        echo "UUID ${LOCATION} ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
+        UUID=`getUUIDFromDevice ${DEVICE}1`
+        echo "UUID=${UUID} ${LOCATION} ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
     done
 }
 
