@@ -66,7 +66,7 @@ function createSingleDataPartition {
         parted -s ${DEVICE} -- mkpart ${LOCATION} ext2 1MiB 100%
         mkfs.ext4 -T largefile4 -m0 ${DEVICE}1
         mkdir -p ${LOCATION}
-        UUID=`getUUIDFromDevice ${DEVICE}1`
+        getUUIDFromDevice ${DEVICE}1
         echo "UUID=${UUID} ${LOCATION} ext4 ${FSTAB_OPTIONS} 0 0" >> /etc/fstab
     done
 }
