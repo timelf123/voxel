@@ -25,6 +25,10 @@ sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
 # configured.
 echo '64.95.99.203 puppet-private.m6r.eu' >> /etc/hosts
 
+# Fix output to serial console
+sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0,9600 quiet "/g' /etc/default/grub
+update-grub
+
 # Fix the order of the network interfaces by the order of mac addresses.
 UDEV_RULES=/etc/udev/rules.d/70-persistent-net.rules
 INDEX=0
