@@ -61,6 +61,7 @@ for USER in "${ROOT_USERS[@]}"
 do
     MAIL_ADDRESS=$(wget -qO - https://api.github.com/users/$USER | awk -F'"' '/"email": /{print $4}')
     wget -qO - https://api.github.com/users/$USER/keys |
-        awk -v user="$MAIL_ADDRESS - github user $USER" -F'"' '/"key": /{print $4, user}' >> /root/.ssh/authorized_keys
+        grep -P '"(id|key)"' |
+        sed -r "N;s/\n/ /;s/.*\"id\": ([0-9]+).* \"key\": \"([^\"]+).*/\2 github user $USER - email $MAIL_ADDRESS - key id \1/" >> /root/.ssh/authorized_keys
 done
 chmod 600 /root/.ssh/authorized_keys
