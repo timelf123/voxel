@@ -46,7 +46,6 @@ ROOT_USERS=(
     bratke
     ctavan
     dohse
-    eckardt
     gesundkrank
     hvoecking
     jkukul
