@@ -21,6 +21,10 @@ apt-get -y install --install-recommends linux-generic-lts-trusty
 
 sed -i '/templatedir/a pluginsync=true' /etc/puppet/puppet.conf
 
+# Set puppet-private hostname to public IP until private interface is
+# configured.
+echo '64.95.99.203 puppet-private.m6r.eu' >> /etc/hosts
+
 # Fix output to serial console
 sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0,9600 quiet "/g' /etc/default/grub
 update-grub
