@@ -50,7 +50,6 @@ ROOT_USERS=(
     hvoecking
     jkukul
     mweise
-    stdusr
 )
 mkdir -p /root/.ssh
 chown root: /root/.ssh
